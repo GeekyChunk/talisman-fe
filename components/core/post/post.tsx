@@ -1,13 +1,17 @@
+"use client";
+import { IPost } from "@/types/post";
 import { ArrowUpIcon, ArrowUturnRightIcon, BookmarkIcon, ChatBubbleLeftIcon, ChevronDoubleDownIcon, ChevronDoubleUpIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
-import { Button, Card, CardBody, IconButton } from "@material-tailwind/react";
+import { Button, ButtonGroup, Card, CardBody, IconButton } from "@material-tailwind/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
-const PostItemSkeleton = () => {
+const PostItem = ({ post }: {
+    post: IPost
+}) => {
+    const router = useRouter()
 
     return (
-        <Card className="w-auto my-4 overflow-hidden cursor-pointer animate-pulse">
+        <Card onClick={() => router.push(`/posts/${post.id}`)} className="w-auto my-4 overflow-hidden cursor-pointer">
             <CardBody className="p-0 w-auto min-w-0">
                 <div className="p-0 flex flex-row items-stretch gap-0">
                     <div className="hidden md:block bg-gray-50 px-2 py-4 border-r-2 border-r-gray-100">
@@ -26,23 +30,18 @@ const PostItemSkeleton = () => {
                     <div className="flex-grow relative">
                         <div className="px-4 py-3">
                             <div className="flex-row">
-                                <div className="flex flex-row gap-3 items-center">
-                                    <span className="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
-                                    <div>
-                                        <div className=" appearance-none w-32 h-4 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                                <Link onClick={e => e.stopPropagation()} href={`/u/${post.user.username}`} className="flex gap-1 items-center w-fit">
+                                    <img className="h-12 w-12 rounded-full overflow-hidden" src="/assets/avatar.png" alt="" />
+                                    <div className="font-bold cursor-pointer hover:underline">
+                                        u/{post.user.username}
                                     </div>
-                                </div>
+                                </Link>
                             </div>
-                            <div className="pt-3">
-                                <h3 className="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style={{ width: "40%" }}></h3>
+                            <div className="py-3">
+                                <h1 className="text-2xl text-slate-800 font-medium">{post.title}</h1>
                             </div>
                             <div className="text-lg text-slate-700">
-                                <ul className="mt-5 space-y-3">
-                                    <li className="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
-                                    <li className="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
-                                    <li className="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
-                                    <li className="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
-                                </ul>
+                                {post.caption}
                             </div>
                         </div>
                         <div onClick={e => e.stopPropagation()} className="border-t border-slate-300 pt-2 pb-3 px-3 flex gap-2 items-center">
@@ -86,4 +85,4 @@ const PostItemSkeleton = () => {
     )
 }
 
-export default PostItemSkeleton
+export default PostItem

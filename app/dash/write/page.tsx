@@ -1,56 +1,63 @@
 "use client";
-import { Tab } from "@headlessui/react";
-import { DocumentTextIcon, LinkIcon, PhotoIcon } from "@heroicons/react/24/outline";
+
+import { ArrowLeftIcon, DocumentTextIcon, LinkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 import TPostForm from "./forms/tpost";
 import IPostForm from "./forms/ipost";
 import LPostForm from "./forms/lpost";
+import { Button, Card, Tab, TabPanel, Tabs, TabsBody, TabsHeader } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
 
 export default function Write() {
+    const router = useRouter();
+
     return (
         <>
             <div className="container mx-auto max-w-7xl px-2 py-4">
+                <div className="flex mt-4 pb-3">
+                    <Button onClick={() => router.back()} variant="gradient" color="amber" size="sm" className="flex gap-2 items-center font-bold text-base py-2">
+                        <ArrowLeftIcon className="w-7 h-7" />
+                        Back
+                    </Button>
+                </div>
                 <div className="py-6">
                     <h1 className="text-3xl font-semibold text-slate-700">Create a post</h1>
                 </div>
-                <div className="bg-gray-100 rounded-xl border border-gray-300 overflow-hidden">
-                    <Tab.Group>
-                        <Tab.List className="w-full flex flex-col md:flex-row">
-                            <Tab className="desktop-tab">
-                                <div className="flex gap-1 justify-center items-center">
-                                    <DocumentTextIcon className="w-10 h-10" />
-                                    <div>Post</div>
+                <Card>
+                    <Tabs value="text">
+                        <TabsHeader>
+                            <Tab value="text">
+                                <div className="flex items-center gap-2 py-2">
+                                    <DocumentTextIcon className="w-8 h-8" />
+                                    Text
                                 </div>
                             </Tab>
-                            <Tab className="desktop-tab">
-                                <div className="flex gap-1 justify-center items-center">
-                                    <PhotoIcon className="w-10 h-10" />
-                                    <div>Image</div>
+                            <Tab value="image">
+                                <div className="flex items-center gap-2 py-2">
+                                    <PhotoIcon className="w-8 h-8" />
+                                    Photo
                                 </div>
                             </Tab>
-                            <Tab className="desktop-tab">
-                                <div className="flex gap-1 justify-center items-center">
-                                    <LinkIcon className="w-10 h-10" />
-                                    <div>Link</div>
+                            <Tab value="link">
+                                <div className="flex items-center gap-2 py-2">
+                                    <LinkIcon className="w-8 h-8" />
+                                    Link
                                 </div>
                             </Tab>
-                        </Tab.List>
-                        <Tab.Panels className="px-4 py-3">
-                            <Tab.Panel>
+                        </TabsHeader>
+                        <TabsBody>
+                            <TabPanel  value="text">
                                 <TPostForm />
-                            </Tab.Panel>
-                            <Tab.Panel>
+                            </TabPanel>
+                            <TabPanel  value="image">
                                 <IPostForm />
-                            </Tab.Panel>
-                            <Tab.Panel>
+                            </TabPanel>
+                            <TabPanel  value="link">
                                 <LPostForm />
-                            </Tab.Panel>
-                        </Tab.Panels>
-                    </Tab.Group>
-                </div>
+                            </TabPanel>
+                        </TabsBody>
+                    </Tabs>
+                </Card>
             </div>
-
-
-
         </>
     )
 }

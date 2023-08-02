@@ -1,9 +1,9 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import PostItem from "@/components/post/post";
+import PostItem from "@/components/core/post/post";
 import PostItemSkeleton from "@/components/skeleton/post";
 import { IPost } from "@/types/post";
 
-const PostsContainer = ({ posts, next, hasMore }: {
+const PostsList = ({ posts, next, hasMore }: {
     posts?: IPost[],
     next: Function,
     hasMore: boolean,
@@ -17,7 +17,7 @@ const PostsContainer = ({ posts, next, hasMore }: {
                         next={() => next()}
                         hasMore={hasMore}
                         loader={<PostItemSkeleton />}
-                        endMessage={<div className="py-2 text-center font-bold tetx-xl text-gray-500">No More post :)</div>}
+                        endMessage={<div className="py-2 text-center font-bold text-gray-500">No More post :)</div>}
                         dataLength={posts.length}
                         scrollableTarget="postcontainer"
                     >
@@ -33,4 +33,4 @@ const PostsContainer = ({ posts, next, hasMore }: {
     )
 }
 
-export default PostsContainer
+export default PostsList

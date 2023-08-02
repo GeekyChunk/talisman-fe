@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  @apply bg-slate-200
+@layer base {
+  body {
+    @apply bg-gray-200;
+  }
 }
 
 @layer components {
@@ -12,24 +14,3 @@
   }
 }
 
-
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #d1d5db;
-  border-radius: 5px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #6b7280;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
-}

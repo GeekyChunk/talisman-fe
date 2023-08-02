@@ -1,4 +1,4 @@
-import Navbar from "../../components/main/navbar";
+import Header from "@/components/main/header"
 
 export default function DashLayout({
     children,
@@ -6,13 +6,11 @@ export default function DashLayout({
     children: React.ReactNode
 }) {
     return (
-        <>
-            <div className="h-screen w-full flex flex-col items-stretch overflow-hidden">
-                <Navbar />
-                <div className="flex-grow overflow-hidden">
-                    {children}
-                </div>
+        <div className="h-screen w-full flex flex-col items-stretch overflow-hidden">
+            <Header />
+            <div className="flex-grow overflow-hidden w-full">
+                {children}
             </div>
-        </>
+        </div>
     )
 }

@@ -4,6 +4,7 @@ import Guard from "@/components/guard";
 import { MESSAGES } from "@/constants/auth";
 import { useAuth } from "@/hooks/auth";
 import { ILoginForm } from "@/types/login";
+import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, Input, Typography } from "@material-tailwind/react";
 import { useFormik } from "formik"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -53,37 +54,42 @@ export default function Page() {
 
     return (
         <Guard guestOnly>
-            <div className="max-w-md w-full">
-                <div className="max-w-md w-full bg-white rounded-md overflow-hidden">
-                    <div className="card-body px-4 py-4">
-                        <h1 className="text-center text-3xl text-gray-600 font-medium">login</h1>
-                        <form onSubmit={formik.handleSubmit}>
-                            <div className="flex flex-col gap-4 pt-4">
-
-                                <div className="form-control">
-                                    <input name="username" onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" placeholder="Username" className={`text-center input input-bordered w-full text-lg ${formik.errors.username && "input-error"}`} />
-
-                                    {formik.errors.username && formik.touched.username ? (
-                                        <label className="label">
-                                            <span className="label-text-alt text-error text-base font-semibold">{formik.errors.username}</span>
-                                        </label>
-                                    ) : null}
-                                </div>
-                                <div className="form-control">
-                                    <input name="password" onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" placeholder="Password" className={`text-center input input-bordered w-full text-lg ${formik.errors.password && "input-error"}`} />
-                                    {formik.errors.password && formik.touched.password ? (
-                                        <label className="label">
-                                            <span className="label-text-alt text-error text-base font-semibold">{formik.errors.password}</span>
-                                        </label>
-                                    ) : null}
-                                </div>
+            <div className="max-w-md w-full flex items-center justify-center">
+                    <Card className="w-full max-w-[24rem]">
+                        <CardHeader
+                            variant="gradient"
+                            color="blue"
+                            className="mb-4 grid h-28 place-items-center"
+                        >
+                            <Typography variant="h3" color="white">
+                                Sign In
+                            </Typography>
+                        </CardHeader>
+                        <CardBody className="flex flex-col gap-4">
+                            <Input label="Email" size="lg" />
+                            <Input label="Password" size="lg" />
+                            <div className="-ml-2.5">
+                                <Checkbox disabled defaultChecked label="Remember Me" />
                             </div>
-                            <div className="flex mt-3">
-                                <button type="submit" className="btn btn-block btn-info rounded-lg">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                        </CardBody>
+                        <CardFooter className="pt-0">
+                            <Button variant="gradient" fullWidth>
+                                Sign In
+                            </Button>
+                            <Typography variant="small" className="mt-6 flex justify-center">
+                                Don&apos;t have an account?
+                                <Typography
+                                    as="a"
+                                    href="#signup"
+                                    variant="small"
+                                    color="blue"
+                                    className="ml-1 font-bold"
+                                >
+                                    Sign up
+                                </Typography>
+                            </Typography>
+                        </CardFooter>
+                    </Card>
             </div>
         </Guard>
     )

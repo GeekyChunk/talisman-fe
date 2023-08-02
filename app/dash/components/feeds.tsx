@@ -1,4 +1,5 @@
 import { FireIcon, HashtagIcon } from "@heroicons/react/24/outline";
+import { Card, CardBody } from "@material-tailwind/react";
 
 type IFeedItem = {
     icon: JSX.Element;
@@ -21,10 +22,10 @@ const FeedItem = ({ icon, name }: IFeedItem) => {
 
 export default function FeedBar() {
     return (
-        <div className="rounded-lg card shadow-md bg-gray-100">
-            <div className="card-body py-3 px-2">
-                <div className="text-center text-xl md:text-2xl font-semibold text-gray-600">Trends</div>
-                <div className="flex flex-col gap-0 text-gray-600">
+        <Card>
+            <CardBody className="py-3 px-2">
+                <div className="text-center text-xl md:text-2xl font-semibold text-gray-50-600">Trends</div>
+                <div className="flex flex-col gap-0 text-blue-gray-50-600">
                     <FeedItem
                         name="Technology"
                         icon={<HashtagIcon
@@ -38,7 +39,7 @@ export default function FeedBar() {
                             strokeWidth={2.8}
                             className="w-5 h-5 md:w-6 md:h-6" />} />
                 </div>
-            </div>
-        </div>
+            </CardBody>
+        </Card>
     )
 }

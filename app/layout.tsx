@@ -1,12 +1,23 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Provider from './provider'
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider from '@/components/providers/auth'
 
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
+import { Roboto } from 'next/font/google'
+import localFont from 'next/font/local'
+
+import 'react-toastify/dist/ReactToastify.css'
+import '@/styles/globals.css'
+import '@/styles/scroll.css'
+
+const roboto = Roboto({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const rem = localFont({ src: '../styles/fonts/REM.ttf' });
 
 export const metadata: Metadata = {
   title: 'Talisman',
@@ -20,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html data-theme="light" lang="en">
-      <body className={inter.className}>
+      <body style={rem.style}>
         <ToastContainer />
         <Provider>
           <AuthProvider>

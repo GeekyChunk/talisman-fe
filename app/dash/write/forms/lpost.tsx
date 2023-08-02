@@ -1,3 +1,4 @@
+import { Button, Input } from '@material-tailwind/react';
 import { useFormik } from 'formik';
 
 const LPostForm = ({ }) => {
@@ -15,11 +16,11 @@ const LPostForm = ({ }) => {
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-            <input type="text" placeholder="Title" className="input input-bordered w-full text-base" />
-            <input type="text" placeholder="Link: https://..." className="input input-bordered w-full text-base" />
+            <Input size="lg" variant="outlined" type="text" label="Title" />
+            <Input size="lg" type="text" label="Link: https://..." />
             <div className="flex justify-end gap-2">
-                <button className="btn btn-info btn-outline rounded-full">Save draft</button>
-                <button className="btn btn-info rounded-full">submit</button>
+                <Button variant="text">Save draft</Button>
+                <Button>submit</Button>
             </div>
         </form>
     )
